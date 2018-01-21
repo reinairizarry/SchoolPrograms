@@ -5,5 +5,3 @@ gross_pay = pay_rate * hours_worked
 print ('Your Gross Pay is %.2f' %gross_pay)
 
 
-my_variable =
-print ('7')
