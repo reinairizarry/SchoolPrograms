@@ -1,0 +1,28 @@
+#Reina Irizarry
+#This program displays the distance and the slope between two points given their x and y coordinates. 
+
+#import math library for square root
+import math 
+
+#inputs for x and y coordinates
+x1 = float(input("Enter the x coordinate of the first point: "))
+y1 = float(input("Enter the y coordinate of the first point: "))
+x2 = float(input("Enter the x coordinate of the second point: "))
+y2 = float(input("Enter the y coordinate of the second point: "))
+
+#slope formula
+slope = (y2 - y1) / (x2 - x1)
+
+#calculate the distance bewtween x and y 
+#Distance formula =√(x2−x1)2+(y2−y1)2
+p1 = ((x2 - x1)**2)
+p2 = ((y2 - y1)**2)
+distance = math.sqrt(p1+p2)
+
+#Print the slope and distance 
+print()
+print("*********************************************")
+print("The slope and distance bewtween x and y are:")
+print("Distance: %.2f." % distance)
+print("Slope: %.2f." % slope)
+print("*********************************************")
