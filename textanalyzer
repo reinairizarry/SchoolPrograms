@@ -1,0 +1,50 @@
+#Reina Irizarry
+#This program will open a text file and analyze it to report the number of 
+#lines, sentences, words, vowels, consonants, and punctuation. Here is some 
+#sample output.
+
+#This section opens the .txt file:
+fname = input("What file do you want to see? ")
+print()
+filevar = open(fname,"r")
+#counters
+line_count = 0
+word_count = 0
+sen = 0
+pun = 0 
+vowel = 0
+Consonants = 0
+#This will show the amount of lines in the file.
+for line in filevar:  
+    line_count = line_count + 1
+    word_count += 1 #shorthand for above line
+    line = line.strip() 
+    print(line)      
+#This section will show the amount of words in the file.
+    for ch in line:
+        if ch == " ":
+            word_count = word_count + 1
+#Counts the number of sentences.
+        elif ch in ".":
+            sen = sen + 1
+            pun += 1
+#This counts punctuation marks 
+        elif ch in ".,';:()!?":
+            pun = pun + 1   
+#This counts the vowels. 
+        elif ch in "aeiouAEIOU":
+            vowel = vowel + 1
+#Counts the Consonants 
+        elif ch not in 'aeiouAEIOU':
+            Consonants  = Consonants + 1        
+#print statements
+print()
+print("Results: ")
+print ("Lines:        ",line_count)
+print("Words:       ",word_count)
+print("Sentences:     ",sen)
+print("punctuations: ",pun)
+print("Consonants:  ",Consonants)
+print("Vowels:      ",vowel)
+#This closes the file. 
+filevar.close()  
