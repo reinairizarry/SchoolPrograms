@@ -1,0 +1,53 @@
+#Reina Irizarry
+#This program will ask a user for the name of the word list file and for the 
+#number of passwords they want to create. It will then print that number 
+#of passwords with some letters changed to numbers and other symbols. 
+
+import random 
+
+#This opens the file
+fname = input("Enter the name of the file that has the word list: ")
+filevar = open (fname,"r")
+
+#empty list of words 
+words = []
+####reads the code line by line
+for line in filevar:
+    line = line.strip()
+    words.append(line)
+
+#Asks the user how many times they want passwords generated 
+user = int(input("How many times do you want to do this? "))
+
+#for loop controls the amount of times it generates a password
+for i in range (0,user):
+    
+    #Python will choose three random words from the wordlist with values. 
+    word_1 = words[random.randint(0,74)]
+    
+    #Word 2 will substitute I,O,S with 1,0,$
+    word_temp = words[random.randint(0,74)].upper()
+    word_2 = ""
+    for ch in word_temp:
+        if ch == "I":
+            word_2 = word_2 + "1"
+        elif ch == "O":
+            word_2 = word_2 + "0"
+        elif ch == "S":
+            word_2 = word_2 + "$"
+        #If there is is no I,O,S, then it adds to the word as is. 
+        else:
+            word_2 = word_2 + ch 
+            
+    #word 3 is plain
+    word_3 = words[random.randint(0,74)]
+    
+    #word 4 is generates a random number 1000-9999
+    word_4 = random.randint(1000,9999)
+    word_4 = str(word_4) #converts to string when printing
+    
+    #This prints the the concatnitated varibles 
+    print(word_1+word_2+word_3+word_4)
+    
+#This closes the file
+filevar.close()
