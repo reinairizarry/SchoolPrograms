@@ -1,0 +1,56 @@
+import matplotlib.pyplot as plt
+ 
+
+# This models the spread of a disease through a community
+ 
+# initial conditions
+s0 = 49990
+i0 = 10
+r0 = 0
+d0 = 0
+t0 = 0
+ 
+# define the lists that we'll be filling to hold future populations
+sus = [s0]
+inf = [i0]
+rec = [r0]
+dead = [d0]
+time = [t0]
+
+######### 
+# other quantities that affect the simulation
+dt = 1   # 1 day
+alpha = 0.000005 # contagiousness
+beta = 0.015      # recovery rate
+gamma = 0.20    # percentage of people who die
+ 
+# simulate it over 100 days
+for i in range(200):
+    new_t = time[i] + dt
+    new_s = sus[i] - alpha * sus[i] * inf[i] * dt
+    new_i = inf[i] + (alpha * sus[i] * inf[i] - beta * inf[i]) * dt
+    new_r = rec[i] + beta*(1-gamma)*inf[i]*dt
+    new_d = dead[i] + beta * gamma * inf[i] * dt
+ 
+    # append these new values to their corresponding lists
+    time.append(new_t)
+    sus.append(new_s)
+    rec.append(new_r)
+    inf.append(new_i)
+    dead.append(new_d)
+ 
+print("Here are how the populations varied by day: ")
+print("%8s %8s %8s %8s %8s" % ("Day", "Sus", "Inf", "Rec", "Dead"))
+for i in range(100):
+    print("%8d %8.2f %8.2f %8.2f %8.2f" % (time[i], sus[i], inf[i], rec[i], dead[i]))
+ 
+plt.plot(time,sus,"r")
+plt.plot(time,inf,"g")
+plt.plot(time,rec,"b")
+plt.plot(time,dead,"k")
+plt.title("Populations by Day")
+plt.xlabel("Day #")
+plt.ylabel("# of people")
+plt.legend(["Susceptible","Infected","Recovered","Dead"])
+plt.grid(axis="both")
+plt.show()
