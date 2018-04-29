@@ -1,0 +1,12 @@
+# This program illustrates basic plotting.
+# Use matplotlib
+ 
+import matplotlib.pyplot as plt
+ 
+plt.plot([0,1,2,3],[0,2,4,6],"r")
+plt.plot([0,1,2,3],[0,1,4,9],"ko")
+plt.title("Linear vs. Quadratic")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend(["Linear","Quadratic"])
+plt.show()
