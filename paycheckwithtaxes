@@ -1,0 +1,13 @@
+rate = float(input("Enter your hourly pay rate: "))
+hours = float(input("Enter your hours worked: "))
+ 
+gross = rate * hours
+taxes = 0.15 * gross
+net = gross - taxes
+ 
+print("**********************")
+print("Here is your paycheck: ")
+print("Gross pay: $%7.2f" % gross)
+print("Taxes:     $%7.2f" % taxes)   
+print("Net pay:   $%7.2f" % net)
+print("**********************")
