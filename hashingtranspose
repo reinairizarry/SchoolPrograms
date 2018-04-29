@@ -1,0 +1,16 @@
+import random
+ 
+phrase = input("Enter the phrase: ")
+key = int(input("Enter the key: "))
+ 
+characters = list(phrase)
+random.shuffle(characters)
+cipher_text = "".join(characters)
+new_cipher_text = ""
+ 
+for ch in cipher_text:
+    code = (ord(ch) + key) % 128
+    new_char = chr(code)
+    new_cipher_text = new_cipher_text + new_char
+ 
+print(new_cipher_text)
