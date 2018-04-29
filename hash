@@ -1,0 +1,63 @@
+import random
+ 
+def simple_hash(text,base):
+    total = 0
+    for ch in text:
+        total = total + ord(ch)
+    the_hash = total % base
+    return the_hash
+     
+def caesar(text,key):
+    result = ""
+    for ch in text:
+        new_code = (ord(ch) + key) % 128
+        result = result + chr(new_code)
+    return result
+ 
+def generate_masc_key():
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    letters = list(alphabet)
+    random.shuffle(letters)
+    key = "".join(letters)
+    return key
+ 
+# mono_sub_cipher takes in the text to encrypt as
+# well as the shuffled letters of the alphabet as
+# the key. It cannot encrypt anything but letters
+# of the alphabet. Also, it deals only with capital
+# letters, so this is kind of a lame implementation.
+def mono_sub_cipher(text, key):
+    text = text.upper()
+    result = ""
+    for ch in text:
+        code = ord(ch)
+        if code >= 65 and code <= 90:
+           index = code - 65
+           key_letter = key[index]
+           result = result + key_letter
+        else:
+            result = result + ch
+    return result
+ 
+# main
+print("This program encrypts and hashes strings you enter.")
+phrase = input("Enter a string: ")
+base = int(input("Enter the base number for the hash: "))
+ 
+hash_value = simple_hash(phrase,base)
+print("The hash is %d." % hash_value)
+ 
+print("Now we'll do a Caesar cipher.")
+key = int(input("Input the numeric key: "))
+caesar_encrypted = caesar(phrase,key)
+print("The Caesar-encrypted value with key %d is %s." % (key, caesar_encrypted))
+ 
+print("Now we'll try a monoalphabetic substitution cipher.")
+print("I will generate a key for you.")
+key = generate_masc_key()
+print("Your key will be %s." % key)
+ 
+print("Now we'll try a monoalphabetic substitution cipher.")
+print("This version does not encrypt anything but letters.")
+mono_encrypted = mono_sub_cipher(phrase,key)
+print("Encrypted using masc, the result is %s." % mono_encrypted)
